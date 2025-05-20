@@ -36,10 +36,18 @@ if (isset($_POST['entrar'])) {
         // Buscar o usuario atraves do email informado
         $usuarioServico = new UsuarioServico();
         $usuario = $usuarioServico->buscarPorEmail($email);
-        
-        Utils::dump($usuario);
-        die();
 
+        if(!$usuario){
+            header("location:login.php?dados_incorretos");
+            exit;
+        }
+
+        // se o usuario for encontrado, verifica a senha digitada
+        if($usuario && password_verify($senha, $usuario['senha'])){
+            echo "senha iguais, pode logar!";
+        } else {
+            echo "senhas diferentes, vaza daqui!!";
+        }
 
     } catch (Throwable $erro) {
         Utils::registrarLog($erro);
