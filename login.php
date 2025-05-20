@@ -3,6 +3,8 @@
 use Microblog\Helpers\Utils;
 use Microblog\Helpers\Validacoes;
 
+use Microblog\Services\UsuarioServico;
+
 require_once "vendor/autoload.php";
 
 
@@ -20,7 +22,7 @@ if( isset($_GET["campos_obrigatorios"]) ){
 if (isset($_POST['entrar'])) {
 
     $email = Utils::sanitizar($_POST['email'], 'email');
-    $senha = Utils::sanitizar($_POST['senha']);
+    $senha = ($_POST['senha']); // não precisa sanitizar pois será codificada/verifivada
 
     // Verificando campos obrigatórios
     if (empty($email) || empty($senha)) {
@@ -30,7 +32,20 @@ if (isset($_POST['entrar'])) {
 
     /* Processo de busca do usuário pelo e-mail e login na área administrativa */
 
-    
+    try {
+        // Buscar o usuario atraves do email informado
+        $usuarioServico = new UsuarioServico();
+        $usuario = $usuarioServico->buscarPorEmail($email);
+        
+        Utils::dump($usuario);
+        die();
+
+
+    } catch (Throwable $erro) {
+        Utils::registrarLog($erro);
+        header("location:..login.php?erro");
+        exit;
+    }
     
 }
 require_once "includes/cabecalho.php";
