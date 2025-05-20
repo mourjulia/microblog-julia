@@ -23,7 +23,7 @@ final class ControleDeAcesso {
     }
 
     // "Bloqueia" ´páginas admin casoo usuário NÃO ESTEJA logado
-    public function exigirLogin(): void
+    public static function exigirLogin(): void
     {
         // Chama inicarSessao para iniciar (se necessário)
         self::iniciarSessao();
