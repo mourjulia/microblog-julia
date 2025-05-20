@@ -5,6 +5,7 @@ use Microblog\Auth\ControleDeAcesso;
 use Microblog\Helpers\Utils;
 use Microblog\Services\UsuarioServico;
 
+ControleDeAcesso::exigirAdmin();
 ControleDeAcesso::exigirLogin();
 
 $usuarioServico = new UsuarioServico();

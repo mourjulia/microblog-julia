@@ -53,4 +53,14 @@ final class ControleDeAcesso {
         header("location:../login.php?logout");
         exit;
     }
+
+    public static function exigirAdmin(): void
+    {
+        self::iniciarSessao();
+        if($_SESSION['tipo'] !== 'admin') {
+        header("location:nao-autorizado.php");
+        exit;
+
+        }
+    }
 }
