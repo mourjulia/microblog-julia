@@ -54,3 +54,9 @@ Arquivo: C:\xampp\htdocs\microblog-julia\src\Database\ConexaoBD.php
 Linha: 24
 Mensagem: SQLSTATE[HY000] [1049] Unknown database 'microblog-julia'
 
+[2025-05-21 10:44:07]
+Arquivo: C:\xampp\htdocs\microblog-julia\src\Services\NoticiaServico.php
+Linha: 188
+Mensagem: SQLSTATE[HY000]: General error: 2006 MySQL server has gone away
+
+

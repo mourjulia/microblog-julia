@@ -12,8 +12,8 @@ $idNoticia = Utils::sanitizar($_GET["id"], "inteiro");
 Utils::verificarId($idNoticia);
 
 // Configurar após programar Controle de Acesso
-$idUsuario = 1;
-$tipoUsuario = TipoUsuario::from('admin');
+$idUsuario = $_SESSION['id'];
+$tipoUsuario = TipoUsuario::from($_SESSION['tipo']);
 
 
 $noticiaServico = new NoticiaServico();
